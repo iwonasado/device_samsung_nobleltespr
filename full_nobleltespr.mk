@@ -1,4 +1,5 @@
-# Copyright (C) 2015 The Dokdo Project
+#
+# Copyright (C) 2015 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,6 +12,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
 
 # For 64 bit
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
@@ -18,12 +20,12 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-# Inherit from zerofltexx device
-$(call inherit-product, device/samsung/zerofltexx/device.mk)
+# Inherit from nobleltespr device
+$(call inherit-product, device/samsung/nobleltespr/device.mk)
 
 # Set those variables here to overwrite the inherited values.
-PRODUCT_NAME := full_zerofltexx
-PRODUCT_DEVICE := zerofltexx
+PRODUCT_NAME := full_nobleltespr
+PRODUCT_DEVICE := nobleltespr
 PRODUCT_BRAND := samsung
 PRODUCT_MANUFACTURER := samsung
-PRODUCT_MODEL := zerofltexx
+PRODUCT_MODEL := nobleltespr

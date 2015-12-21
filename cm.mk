@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2015 The Dokdo Project
+# Copyright (C) 2015 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-$(call inherit-product, device/samsung/zerofltexx/full_zerofltexx.mk)
+$(call inherit-product, device/samsung/nobleltespr/full_nobleltespr.mk)
 
 # Enhanced NFC
 $(call inherit-product, vendor/cm/config/nfc_enhanced.mk)
@@ -22,5 +22,5 @@ $(call inherit-product, vendor/cm/config/nfc_enhanced.mk)
 # Inherit common CM phone.
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
-PRODUCT_DEVICE := zerofltexx
-PRODUCT_NAME := cm_zerofltexx
+PRODUCT_DEVICE := nobleltespr
+PRODUCT_NAME := cm_nobleltespr

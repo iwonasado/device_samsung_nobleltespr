@@ -1,6 +1,5 @@
 /*
-   Copyright (c) 2015, The Dokdo Project. All rights reserved.
-
+   Copyright (c) 2015, The Linux Foundation. All rights reserved.
    Redistribution and use in source and binary forms, with or without
    modification, are permitted provided that the following conditions are
    met:
@@ -13,7 +12,6 @@
     * Neither the name of The Linux Foundation nor the names of its
       contributors may be used to endorse or promote products derived
       from this software without specific prior written permission.
-
    THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED
    WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT
@@ -25,10 +23,6 @@
    WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
    OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
    IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-   File Name : init_sec.c
-   Create Date : 2015.11.03
-   Author : Sunghun Ra
  */
 
 #include <stdlib.h>
@@ -39,6 +33,29 @@
 #include "log.h"
 #include "util.h"
 
+void cdma_properties(char const default_cdma_sub[], char const default_network[])
+{
+    property_set("ro.telephony.default_cdma_sub", default_cdma_sub);
+    property_set("ro.telephony.default_network", default_network);
+
+    property_set("telephony.lteOnCdmaDevice", "1");
+    property_set("persist.radio.apm_sim_not_pwdn", "1");
+    property_set("persist.radio.add_power_save", "1");
+    property_set("persist.radio.snapshot_enabled", "1");
+    property_set("persist.radio.snapshot_timer", "22");
+    property_set("ro.ril.ecclist", "911,#911,*911");
+    property_set("persist.rmnet.mux", "enabled");
+    property_set("ro.config.combined_signal", "true");
+}
+
+void common_properties()
+{
+    property_set("ro.use_data_netmgrd", "false");
+    property_set("persist.data.netmgrd.qos.enable", "false");
+    property_set("ro.ril.hsxpa", "1");
+    property_set("ro.ril.gprsclass", "10");
+}
+
 void vendor_load_properties()
 {
     char platform[PROP_VALUE_MAX];
@@ -48,33 +65,18 @@ void vendor_load_properties()
 
     property_get("ro.bootloader", bootloader);
 
-    if (strstr(bootloader, "G920S")) {
-        /* zeroflteskt */
-        property_set("ro.build.fingerprint", "samsung/zeroflteskt/zeroflteskt:5.0.2/LRX22G/G920SKSU1AOF5:user/release-keys");
-        property_set("ro.build.description", "zeroflteskt-user 5.0.2 LRX22G G920SKSU1AOF5 release-keys");
-        property_set("ro.product.model", "SM-G920S");
-        property_set("ro.product.device", "zeroflteskt");
-    } else if (strstr(bootloader, "G920K")) {
-        /* zerofltektt */
-        property_set("ro.build.fingerprint", "samsung/zerofltelgt/zerofltelgt:5.0.2/LRX22G/G920KKSU1AOF5:user/release-keys");
-        property_set("ro.build.description", "zerofltektt-user 5.0.2 LRX22G G920KKSU1AOF5 release-keys");
-        property_set("ro.product.model", "SM-G920K");
-        property_set("ro.product.device", "zerofltektt");
-    } else if (strstr(bootloader, "G920L")) {
-        /* zerofltelgt */
-        property_set("ro.build.fingerprint", "samsung/zerofltelgt/zerofltelgt:5.0.2/LRX22G/G920LKSU1AOF5:user/release-keys");
-        property_set("ro.build.description", "zerofltelgt-user 5.0.2 LRX22G G920LKSU1AOF5 release-keys");
-        property_set("ro.product.model", "SM-G920L");
-        property_set("ro.product.device", "zerofltelgt");
-    } else {
-        /* zerofltexx */
-        property_set("ro.build.fingerprint", "samsung/zerofltexx/zerofltexx:5.0.2/LRX22G/G920FKSU1AOF5:user/release-keys");
-        property_set("ro.build.description", "zerofltexx-user 5.0.2 LRX22G G920FKSU1AOF5 release-keys");
-        property_set("ro.product.model", "SM-G920F");
-        property_set("ro.product.device", "zerofltexx");
+    if (strstr(bootloader, "N920P")) {
+        /* nobleltespr */
+        cdma_properties("1", "10");
+        common_properties();
+        property_set("ro.build.fingerprint", "samsung/nobleltespr/nobleltespr:5.1.1/LMY47X/N920PVPS2AOK3:user/release-keys");
+        property_set("ro.build.description", "nobleltespr-user 5.1.1 LMY47X N920PVPS2AOK3 release-keys");
+        property_set("ro.product.model", "SM-N920P");
+        property_set("ro.product.device", "nobleltespr");
+        property_set("ro.telephony.ril_class", "noblesprRIL");
     }
 
     property_get("ro.product.device", device);
     strlcpy(devicename, device, sizeof(devicename));
-    ERROR("Found bootloader id %s setting build properties for %s device\n", bootloader, devicename);
+    INFO("Found bootloader id %s setting build properties for %s device\n", bootloader, devicename);
 }

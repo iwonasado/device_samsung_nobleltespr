@@ -34,20 +34,20 @@ import com.android.internal.telephony.uicc.IccCardApplicationStatus;
 import com.android.internal.telephony.uicc.IccCardStatus;
 
 /**
- * RIL customization for Galaxy S6.
+ * RIL customization for Sprint Note 5
  * {@hide}
  */
-public class zeroRIL extends RIL implements CommandsInterface {
+public class noblesprRIL extends RIL implements CommandsInterface {
 
     private boolean DBG = false;
 
-    public zeroRIL(Context context, int preferredNetworkType,
+    public noblesprRIL(Context context, int preferredNetworkType,
             int cdmaSubscription, Integer instanceId) {
         super(context, preferredNetworkType, cdmaSubscription, instanceId);
         mQANElements = 6;
     }
 
-    public zeroRIL(Context context, int networkMode,
+    public noblesprRIL(Context context, int networkMode,
             int cdmaSubscription) {
         super(context, networkMode, cdmaSubscription);
         mQANElements = 6;
