@@ -934,6 +934,12 @@ on fs
     chown system usb /sys/class/usb_notify/usb_control/disable
     chmod 0664 /sys/class/usb_notify/usb_control/disable
 
+# ARGOSD
+service argos-daemon /system/bin/argosd
+    class main
+    user system
+    group system radio
+
 # deferred initcall
 service sec-sh /system/bin/sh /system/etc/init.sec.boot.sh
     class main
