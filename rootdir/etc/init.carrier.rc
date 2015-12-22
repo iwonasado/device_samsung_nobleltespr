@@ -1,5 +1,3 @@
-import init.gps.rc
-
 on init
 #carrier
     mkdir /carrier 0771 system system

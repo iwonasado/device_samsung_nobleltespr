@@ -996,4 +996,4 @@ service cs_service /system/bin/cs
     group system
     disabled
 on property:sys.mobicoredaemon.enable=true
-    start cs_service
+    start cs_service    start cs_service
