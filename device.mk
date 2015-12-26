@@ -148,6 +148,10 @@ PRODUCT_PACKAGES += \
     init.wifi.rc \
     ueventd.samsungexynos7420.rc
 
+# Ril
+PRODUCT_PACKAGES += \
+    libril_shim
+
 # Samsung
 PRODUCT_PACKAGES += \
     SamsungServiceMode
