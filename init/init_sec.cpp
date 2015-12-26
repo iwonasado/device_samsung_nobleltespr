@@ -33,27 +33,15 @@
 #include "log.h"
 #include "util.h"
 
-void cdma_properties(char const default_cdma_sub[], char const default_network[])
+void cdma_properties(char default_cdma_sub[], char operator_numeric[],
+        char operator_alpha[])
 {
+    property_set("ril.subscription.types", "NV,RUIM");
+    property_set("ro.cdma.home.operator.numeric", operator_numeric);
+    property_set("ro.cdma.home.operator.alpha", operator_alpha);
     property_set("ro.telephony.default_cdma_sub", default_cdma_sub);
-    property_set("ro.telephony.default_network", default_network);
-
+    property_set("ro.telephony.default_network", "10");
     property_set("telephony.lteOnCdmaDevice", "1");
-    property_set("persist.radio.apm_sim_not_pwdn", "1");
-    property_set("persist.radio.add_power_save", "1");
-    property_set("persist.radio.snapshot_enabled", "1");
-    property_set("persist.radio.snapshot_timer", "22");
-    property_set("ro.ril.ecclist", "911,#911,*911");
-    property_set("persist.rmnet.mux", "enabled");
-    property_set("ro.config.combined_signal", "true");
-}
-
-void common_properties()
-{
-    property_set("ro.use_data_netmgrd", "false");
-    property_set("persist.data.netmgrd.qos.enable", "false");
-    property_set("ro.ril.hsxpa", "1");
-    property_set("ro.ril.gprsclass", "10");
 }
 
 void vendor_load_properties()
@@ -67,13 +55,12 @@ void vendor_load_properties()
 
     if (strstr(bootloader, "N920P")) {
         /* nobleltespr */
-        cdma_properties("1", "10");
-        common_properties();
         property_set("ro.build.fingerprint", "samsung/nobleltespr/nobleltespr:5.1.1/LMY47X/N920PVPS2AOK3:user/release-keys");
         property_set("ro.build.description", "nobleltespr-user 5.1.1 LMY47X N920PVPS2AOK3 release-keys");
         property_set("ro.product.model", "SM-N920P");
         property_set("ro.product.device", "nobleltespr");
         property_set("ro.telephony.ril_class", "noblesprRIL");
+        cdma_properties("1", "310120", "Sprint");
     }
 
     property_get("ro.product.device", device);
