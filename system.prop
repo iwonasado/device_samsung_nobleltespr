@@ -24,3 +24,5 @@ ril.subscription.types=NV,RUIM
 
 # Wifi
 wifi.interface=wlan0
+
+ro.debug_level=0x4948
