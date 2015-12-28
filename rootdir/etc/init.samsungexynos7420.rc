@@ -990,6 +990,13 @@ service battery_charger /sbin/healthd -c
     class charger
     critical
 
+# RTC logging daemon
+service rtc_log /system/bin/rtc_log.sh
+    class main
+    user system
+    group system
+    oneshot
+
 # DRK/CS service
 service cs_service /system/bin/cs
     class main
@@ -997,4 +1004,4 @@ service cs_service /system/bin/cs
     group system
     disabled
 on property:sys.mobicoredaemon.enable=true
-    start cs_service    start cs_service
+    start cs_service
