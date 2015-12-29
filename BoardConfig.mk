@@ -104,6 +104,8 @@ TARGET_BOARD_PLATFORM := exynos5
 TARGET_SLSI_VARIANT := blobs
 
 # Radio
+BOARD_PROVIDES_LIBRIL := true
+BOARD_MODEM_TYPE := mdm9x35
 BOARD_RIL_CLASS := ../../../$(NOBLELTE_PATH)/ril
 
 # Recovery
