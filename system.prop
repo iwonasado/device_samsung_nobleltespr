@@ -16,9 +16,7 @@ ro.nfc.sec_hal=true
 persist.sys.isUsbOtgEnabled=true
 
 # Radio
-rild.libpath=/system/lib64/librilswitch.so
-rilswitch.vendorlibpath=/system/lib64/libsec-ril.so
-rilswitch.cfilibpath=/system/lib64/libcfiril.so
+rild.libpath=/system/lib64/libsec-ril.so
 rild.libargs=-d /dev/smd0
 ril.subscription.types=NV,RUIM
 
