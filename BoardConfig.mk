@@ -136,5 +136,8 @@ WIFI_DRIVER_FW_PATH_STA          := "/system/etc/wifi/bcmdhd_sta.bin_b0"
 WIFI_DRIVER_FW_PATH_AP           := "/system/etc/wifi/bcmdhd_apsta.bin_b1"
 WIFI_BAND                        := 802_11_ABG
 
+# SELinux
+include device/qcom/sepolicy/sepolicy.mk
+
 # inherit from the proprietary version
 -include vendor/samsung/nobleltespr/BoardConfigVendor.mk
