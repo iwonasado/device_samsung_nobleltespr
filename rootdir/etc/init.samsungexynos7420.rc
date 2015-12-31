@@ -8,7 +8,6 @@ on early-init
     mount debugfs /sys/kernel/debug /sys/kernel/debug
 
 on init
-    export LD_SHIM_LIBS /system/lib64/libril.so|libril_shim.so
     start watchdogd
     mkdir /preload 0771 system system
 
